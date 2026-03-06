@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Smart Expense Tracker</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Smart Expense Tracker</h1>
+
+<div class="form">
+
+<input id="amount" placeholder="Amount">
+
+<select id="category">
+<option>Food</option>
+<option>Travel</option>
+<option>Shopping</option>
+<option>Bills</option>
+<option>Other</option>
+</select>
+
+<input type="date" id="date">
+
+<input id="desc" placeholder="Description">
+
+<button onclick="addExpense()">Add Expense</button>
+
+</div>
+
+<!-- SUMMARY CARDS -->
+
+<div class="summary">
+
+<div class="card">
+<h3>Total Spent</h3>
+<p>₹<span id="total">0</span></p>
+</div>
+
+<div class="card">
+<h3>Budget Warning</h3>
+<p id="warning"></p>
+</div>
+
+</div>
+
+
+<!-- CHARTS -->
+
+<div class="charts">
+
+<div class="chart-box">
+<h3>Category Analysis</h3>
+<canvas id="expenseChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Monthly Analysis</h3>
+<canvas id="monthlyChart"></canvas>
+</div>
+
+</div>
+
+
+<!-- TABLE -->
+
+<h2>Expenses</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Amount</th>
+<th>Category</th>
+<th>Date</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableData"></tbody>
+
+</table>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
