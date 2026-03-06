@@ -15,7 +15,13 @@ app.get("/", (req,res)=>{
 
 app.use(express.static("public"));
 
-const db = new sqlite3.Database("database.db");
+const path = require("path");
+
+const dbPath = process.env.RENDER
+  ? "/tmp/database.db"
+  : path.join(__dirname, "database.db");
+
+const db = new sqlite3.Database(dbPath);
 
 
 // Create Tables
