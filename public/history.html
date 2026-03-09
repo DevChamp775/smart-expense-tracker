@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Expense History</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Expense History</h1>
+
+<select id="historyMonth" onchange="loadHistory()"></select>
+
+<table>
+
+<thead>
+<tr>
+<th>Amount</th>
+<th>Category</th>
+<th>Date</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody id="historyTable"></tbody>
+
+</table>
+
+</div>
+
+<script src="history.js"></script>
+
+</body>
+</html>

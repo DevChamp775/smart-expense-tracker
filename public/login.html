@@ -7,12 +7,13 @@
 </head>
 
 <body class="login-page">
+
 <div class="login-box">
 
-<h1>Smart Expense Tracker</h1>
+<h1>BUDGET IQ</h1>
 <h2>Login</h2>
 
-<input id="username" placeholder="Username">
+<input id="email" placeholder="Email">
 
 <br><br>
 
@@ -23,13 +24,17 @@
 <button onclick="login()">Login</button>
 <button onclick="register()">Register</button>
 
+<br><br>
+
+<a href="forgot.html">Forgot Password?</a>
+
 </div>
 
 <script>
 
 async function login(){
 
-let username = document.getElementById("username").value;
+let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
 let res = await fetch("/login",{
@@ -37,7 +42,7 @@ method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify({username,password})
+body:JSON.stringify({email,password})
 });
 
 let data = await res.json();
@@ -45,9 +50,9 @@ let data = await res.json();
 if(data.success){
 localStorage.setItem("userId", data.userId);
 window.location.href="index.html";
-}   // redirect to expense tracker
+}
 else{
-alert("Invalid Username or Password");
+alert("Invalid Email or Password");
 }
 
 }
@@ -55,19 +60,18 @@ alert("Invalid Username or Password");
 
 async function register(){
 
-let username=document.getElementById("username").value;
+let email=document.getElementById("email").value;
 let password=document.getElementById("password").value;
 
 await fetch("/register",{
 method:"POST",
 headers:{'Content-Type':'application/json'},
-body:JSON.stringify({username,password})
+body:JSON.stringify({email,password})
 });
 
 alert("User created. Now login.");
 
-// clear input fields
-document.getElementById("username").value="";
+document.getElementById("email").value="";
 document.getElementById("password").value="";
 
 }
