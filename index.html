@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Smart Expense Tracker</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kavivanar&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+<button onclick="logout()">Logout</button>
+
+<button onclick="openHistory()">History</button>
+
+<div class="container">
+
+<div class="title">
+    <img src="0.png" class="logo">
+    <h1>Account Budget Manager</h1>
+</div>
+
+<div class="form">
+
+<input id="amount" placeholder="Amount">
+
+<select id="category">
+<option>Food</option>
+<option>Travel</option>
+<option>Shopping</option>
+<option>Bills</option>
+<option>Tax</option>
+<option>Family/Friend</option>
+<option>Gifts</option>
+<option>Other</option>
+</select>
+
+<input type="date" id="date">
+
+<input id="desc" placeholder="Description">
+
+<button onclick="addExpense()">Add Expense</button>
+<button onclick="exportPDF()">Export PDF</button>
+
+</div>
+
+<!-- SUMMARY CARDS -->
+
+<div class="summary">
+
+<div class="card">
+<h3>Total Spent</h3>
+<p>₹<span id="total">0</span></p>
+</div>
+
+<div class="card">
+<h3>Budget Warning</h3>
+<p id="warning"></p>
+</div>
+
+</div>
+
+
+<!-- CHARTS -->
+
+<div class="charts">
+
+<div class="chart-box">
+<h3>Category Analysis</h3>
+<canvas id="expenseChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Monthly Analysis</h3>
+<canvas id="monthlyChart"></canvas>
+</div>
+
+</div>
+
+
+<!-- TABLE -->
+
+
+<h2>Expenses</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Amount</th>
+<th>Category</th>
+<th>Date</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableData"></tbody>
+
+</table>
+
+<div id="historySection" style="display:none">
+
+<h2>Expense History</h2>
+
+<select id="historyMonth" onchange="loadHistory()"></select>
+
+<table>
+
+<thead>
+<tr>
+<th>Amount</th>
+<th>Category</th>
+<th>Date</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody id="historyTable"></tbody>
+
+</table>
+
+</div>
+
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
