@@ -1,0 +1,258 @@
+body{
+
+font-family: Arial, sans-serif;
+
+background-image:
+linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+url("background.jpg");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+min-height:100vh;
+margin:0;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+}
+
+h1{
+font-family: "Kavivanar", cursive;
+font-weight: 700;
+color:#333;
+margin:0;
+font-size:60px;
+letter-spacing:3px;
+}
+
+.form{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:20px;
+}
+
+.container{
+
+background: rgba(255,255,255,0.9);
+
+padding:40px;
+
+border-radius:12px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+max-width:1000px;
+
+width:90%;
+
+margin-top:40px;
+
+}
+
+input,select{
+padding:10px;
+margin:5px;
+}
+
+button{
+padding:10px 15px;
+background:#4CAF50;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#388E3C;
+}
+
+table{
+width:100%;
+margin:auto;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+}
+
+th{
+background:#eee;
+}
+
+#warning{
+color:red;
+font-weight:bold;
+}
+
+
+/* ---------- CHART FIX ---------- */
+
+.chart-box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+width:400px;
+height:350px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+.chart-box canvas{
+max-width:100%;
+max-height:280px;
+}
+
+
+/* ---------- LOGIN PAGE DESIGN ---------- */
+
+.login-page{
+
+background-image:url("background.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+height:100vh;
+}
+
+.login-box{
+
+background:rgba(255,255,255,0.9);
+
+padding:50px;
+
+width:600px;
+
+border-radius:12px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+
+text-align:center;
+
+}
+
+.login-box input{
+
+width:90%;
+
+padding:12px;
+
+margin:10px 0;
+
+font-size:16px;
+
+border-radius:5px;
+
+border:1px solid #ccc;
+
+}
+
+.login-box button{
+
+width:45%;
+
+margin:10px;
+
+}
+
+
+/* ---------- DASHBOARD LAYOUT ---------- */
+
+.summary{
+display:flex;
+justify-content:center;
+gap:30px;
+margin:30px 0;
+}
+
+.card{
+background:white;
+padding:20px 40px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
+}
+
+.charts{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+
+@media (max-width: 768px){
+
+.container{
+width:95%;
+padding:20px;
+}
+
+.form{
+flex-direction:column;
+}
+
+input,select,button{
+width:100%;
+margin:5px 0;
+}
+
+.summary{
+flex-direction:column;
+gap:15px;
+}
+
+.charts{
+flex-direction:column;
+align-items:center;
+}
+
+.chart-box{
+width:100%;
+height:320px;
+}
+
+table{
+font-size:14px;
+}
+}
+.title{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+.logo{
+width:140px;
+height:140px;
+object-fit:cover;
+
+border-radius:50%;      /* makes it circular */
+border:4px solid #a6afd1;   /* green circular border */
+
+box-shadow:0 5px 15px rgba(196, 193, 201, 0.3);
+}
