@@ -1,32 +1,406 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<title>Login - Smart Expense Tracker</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BudgetIQ - AI Expense Tracker</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+height:100vh;
+overflow:hidden;
+
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+url("background.jpg");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+position:relative;
+}
+
+/* animated glow circles */
+
+body::before,
+body::after{
+
+content:"";
+position:absolute;
+border-radius:50%;
+filter:blur(80px);
+z-index:0;
+animation:float 8s infinite ease-in-out;
+}
+
+body::before{
+width:300px;
+height:300px;
+background:#4CAF50;
+top:-80px;
+left:-80px;
+opacity:0.35;
+}
+
+body::after{
+width:250px;
+height:250px;
+background:#00bcd4;
+bottom:-60px;
+right:-60px;
+opacity:0.3;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(20px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* login card */
+
+.login-container{
+
+position:relative;
+z-index:2;
+
+width:420px;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.2);
+
+border-radius:28px;
+
+padding:45px 35px;
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.5),
+0 0 30px rgba(76,175,80,0.2);
+
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0px);
+}
+
+}
+
+/* top logo */
+
+.logo-box{
+
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+margin-bottom:30px;
+}
+
+.logo-circle{
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,#4CAF50,#00c853);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:35px;
+color:white;
+
+box-shadow:0 0 25px rgba(76,175,80,0.6);
+
+margin-bottom:15px;
+}
+
+.logo-box h1{
+
+color:white;
+font-size:34px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+.logo-box p{
+
+color:#d9d9d9;
+font-size:14px;
+margin-top:5px;
+}
+
+/* form */
+
+.input-group{
+
+margin-bottom:22px;
+position:relative;
+}
+
+.input-group i{
+
+position:absolute;
+left:16px;
+top:50%;
+transform:translateY(-50%);
+color:#888;
+font-size:16px;
+}
+
+.input-group input{
+
+width:100%;
+
+padding:16px 16px 16px 48px;
+
+border:none;
+outline:none;
+
+border-radius:14px;
+
+font-size:15px;
+
+background:rgba(255,255,255,0.92);
+
+transition:0.3s;
+}
+
+.input-group input:focus{
+
+transform:scale(1.02);
+
+box-shadow:
+0 0 15px rgba(76,175,80,0.5);
+}
+
+/* buttons */
+
+.button-group{
+
+display:flex;
+gap:15px;
+margin-top:10px;
+}
+
+.button-group button{
+
+flex:1;
+
+padding:15px;
+
+border:none;
+border-radius:14px;
+
+font-size:15px;
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+}
+
+.login-btn{
+
+background:linear-gradient(135deg,#4CAF50,#00c853);
+color:white;
+}
+
+.register-btn{
+
+background:white;
+color:#222;
+}
+
+.button-group button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* forgot */
+
+.forgot{
+
+text-align:center;
+margin-top:22px;
+}
+
+.forgot a{
+
+color:#e0e0e0;
+text-decoration:none;
+font-size:14px;
+transition:0.3s;
+}
+
+.forgot a:hover{
+
+color:#4CAF50;
+}
+
+/* footer */
+
+.footer-text{
+
+text-align:center;
+margin-top:25px;
+
+color:#ccc;
+font-size:13px;
+}
+
+/* responsive */
+
+@media(max-width:500px){
+
+.login-container{
+
+width:92%;
+padding:35px 25px;
+}
+
+.logo-box h1{
+font-size:28px;
+}
+
+}
+
+</style>
+
 </head>
 
-<body class="login-page">
+<body>
 
-<div class="login-box">
+<div class="login-container">
 
-<h1>BUDGET IQ</h1>
-<h2>Login</h2>
+<div class="logo-box">
 
-<input id="email" placeholder="Email">
+<div class="logo-circle">
+<i class="fa-solid fa-wallet"></i>
+</div>
 
-<br><br>
+<h1>BudgetIQ</h1>
 
-<input id="password" type="password" placeholder="Password">
+<p>AI Powered Smart Expense Tracker</p>
 
-<br><br>
+</div>
 
-<button onclick="login()">Login</button>
-<button onclick="register()">Register</button>
+<!-- EMAIL -->
 
-<br><br>
+<div class="input-group">
 
-<a href="forgot.html">Forgot Password?</a>
+<i class="fa-solid fa-envelope"></i>
+
+<input
+id="email"
+type="email"
+placeholder="Enter your email"
+>
+
+</div>
+
+<!-- PASSWORD -->
+
+<div class="input-group">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+id="password"
+type="password"
+placeholder="Enter your password"
+>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="button-group">
+
+<button
+onclick="login()"
+class="login-btn"
+>
+Login
+</button>
+
+<button
+onclick="register()"
+class="register-btn"
+>
+Register
+</button>
+
+</div>
+
+<!-- FORGOT -->
+
+<div class="forgot">
+
+<a href="forgot.html">
+Forgot Password?
+</a>
+
+</div>
+
+<div class="footer-text">
+Secure AI Finance Management System
+</div>
 
 </div>
 
@@ -37,22 +411,39 @@ async function login(){
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
+if(email==="" || password===""){
+alert("Please fill all fields");
+return;
+}
+
 let res = await fetch("/login",{
+
 method:"POST",
+
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify({email,password})
+
+body:JSON.stringify({
+email,
+password
+})
+
 });
 
 let data = await res.json();
 
 if(data.success){
+
 localStorage.setItem("userId", data.userId);
+
 window.location.href="index.html";
+
 }
 else{
+
 alert("Invalid Email or Password");
+
 }
 
 }
@@ -63,13 +454,27 @@ async function register(){
 let email=document.getElementById("email").value;
 let password=document.getElementById("password").value;
 
+if(email==="" || password===""){
+alert("Please fill all fields");
+return;
+}
+
 await fetch("/register",{
+
 method:"POST",
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({email,password})
+
+headers:{
+'Content-Type':'application/json'
+},
+
+body:JSON.stringify({
+email,
+password
+})
+
 });
 
-alert("User created. Now login.");
+alert("User created successfully. Now login.");
 
 document.getElementById("email").value="";
 document.getElementById("password").value="";

@@ -1,33 +1,95 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Smart Expense Tracker</title>
 
 <link rel="stylesheet" href="style.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kavivanar&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kavivanar&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 </head>
 
 <body>
-<button onclick="logout()">Logout</button>
-
-<button onclick="openHistory()">History</button>
 
 <div class="container">
 
-<div class="title">
-    <img src="0.png" class="logo">
-    <h1>Account Budget Manager</h1>
+
+<!-- ================= TOP NAVBAR ================= -->
+
+<div class="top-navbar">
+
+<div class="brand-section">
+<img src="0.png" class="logo">
+
+<div>
+<h1>Account Budget Manager</h1>
+<p class="subtitle">
+AI Smart Expense Tracker with bill scanning,
+analytics and monthly budgeting
+</p>
 </div>
+
+</div>
+
+<div class="nav-buttons">
+
+<button onclick="logout()">
+Logout
+</button>
+
+<button onclick="openHistory()">
+History
+</button>
+
+<button onclick="resetAll()">
+Reset All
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CONTROL PANEL ================= -->
+
+<div class="control-panel">
+
+<div class="control-card">
+<label>Select Month</label>
+<input type="month" id="selectedMonth">
+</div>
+
+<div class="control-card">
+<label>Monthly Budget (₹)</label>
+<input type="number" id="budgetInput" placeholder="Enter Budget">
+<button onclick="saveBudget()">
+Save Budget
+</button>
+</div>
+
+</div>
+
+
+<!-- ================= ADD EXPENSE SECTION ================= -->
+
+<div class="section-box">
+
+<h2>Add Expense</h2>
 
 <div class="form">
 
-<input id="amount" placeholder="Amount">
+<input id="amount" placeholder="Enter Amount">
 
 <select id="category">
 <option>Food</option>
@@ -37,36 +99,87 @@
 <option>Tax</option>
 <option>Family/Friend</option>
 <option>Gifts</option>
+<option>Entertainment</option>
+<option>Medical</option>
 <option>Other</option>
 </select>
 
 <input type="date" id="date">
 
-<input id="desc" placeholder="Description">
+<input id="desc" placeholder="Expense Description">
 
-<button onclick="addExpense()">Add Expense</button>
-<button onclick="exportPDF()">Export PDF</button>
+<button onclick="addExpense()">
+Add Expense
+</button>
+
+<button onclick="exportPDF()">
+Export PDF
+</button>
+
+<button onclick="runAnalysis()">
+Smart Analysis
+</button>
 
 </div>
 
-<!-- SUMMARY CARDS -->
+</div>
+
+
+<!-- ================= BILL SCANNER ================= -->
+
+<div class="section-box bill-upload">
+
+<div class="upload-top">
+
+<div>
+<h2>AI Bill Scanner</h2>
+<p>
+Upload any bill or receipt image to auto-detect expense details.
+</p>
+</div>
+
+</div>
+
+<div class="upload-controls">
+
+<input
+class="bill-input"
+type="file"
+id="billImage"
+accept="image/*"
+>
+
+<button onclick="uploadBill()">
+Scan Bill
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= SUMMARY ================= -->
 
 <div class="summary">
 
-<div class="card">
+<div class="card total-card">
 <h3>Total Spent</h3>
-<p>₹<span id="total">0</span></p>
+<p>
+₹<span id="total">0</span>
+</p>
 </div>
 
-<div class="card">
+<div class="card budget-card">
 <h3>Budget Warning</h3>
-<p id="warning"></p>
+<p id="warning">
+0% of budget used
+</p>
 </div>
 
 </div>
 
 
-<!-- CHARTS -->
+<!-- ================= CHARTS ================= -->
 
 <div class="charts">
 
@@ -83,10 +196,49 @@
 </div>
 
 
-<!-- TABLE -->
+<!-- ================= SMART ANALYSIS ================= -->
 
+<div class="ai-assistant">
 
-<h2>Expenses</h2>
+<div class="analysis-header">
+<h2>AI Financial Assistant</h2>
+
+<p>
+Smart AI-powered expense analysis, budgeting advice,
+overspending detection and financial recommendations.
+</p>
+</div>
+
+<div id="insights" class="ai-messages">
+
+<div class="ai-card">
+<h3>🤖 AI Status</h3>
+<p>
+Your expense data is ready for smart analysis.
+Click the button below to generate personalized insights.
+</p>
+</div>
+
+</div>
+
+<div class="ai-actions">
+
+<button onclick="runAnalysis()" class="ai-btn">
+Generate AI Advice
+</button>
+
+</div>
+
+</div>
+<!-- ================= EXPENSE TABLE ================= -->
+
+<div class="section-box">
+
+<div class="table-top">
+<h2>Expense Records</h2>
+</div>
+
+<div class="table-wrapper">
 
 <table>
 
@@ -104,11 +256,20 @@
 
 </table>
 
-<div id="historySection" style="display:none">
+</div>
+
+</div>
+
+
+<!-- ================= HISTORY SECTION ================= -->
+
+<div id="historySection" class="section-box" style="display:none">
 
 <h2>Expense History</h2>
 
 <select id="historyMonth" onchange="loadHistory()"></select>
+
+<div class="table-wrapper">
 
 <table>
 
@@ -127,10 +288,55 @@
 
 </div>
 
+</div>
+<!-- ================= AI CHAT ================= -->
+<div class="section-box" id="chatSection">
+  <div class="chat-header-bar">
+    <div>
+      <h2>Finance AI Chat</h2>
+      <p>Ask anything about your expenses in plain English</p>
+    </div>
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+    <div class="ai-bubble">
+      Hey! I have full access to your expense data for this month.
+      Ask me anything — overspending, category breakdowns, saving tips, or predictions.
+    </div>
+  </div>
+
+  <div class="chat-chips" id="chatChips">
+    <button onclick="chipAsk('Where am I overspending?')">Where am I overspending?</button>
+    <button onclick="chipAsk('How is my food budget?')">How is my food budget?</button>
+    <button onclick="chipAsk('What is my biggest expense?')">Biggest expense?</button>
+    <button onclick="chipAsk('How can I save more this month?')">How to save more?</button>
+    <button onclick="chipAsk('Give me a full financial summary')">Full summary</button>
+  </div>
+
+  <div class="chat-input-row">
+    <input
+      id="chatInput"
+      placeholder="Ask about your finances..."
+      onkeydown="if(event.key==='Enter') sendChat()"
+    />
+    <button onclick="sendChat()">Send</button>
+  </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer">
+
+<p>
+Smart Expense Tracker • AI + Julia + OCR Bill Scanner
+</p>
+
+</div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
